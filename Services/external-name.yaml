@@ -1,0 +1,9 @@
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.15/#service-v1-core
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: minimal-external-name
+spec:
+  type: ExternalName
+  externalName: external.name.com

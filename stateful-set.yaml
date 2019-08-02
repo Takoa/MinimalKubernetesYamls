@@ -1,0 +1,31 @@
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.15/#statefulset-v1-apps
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: minimal-stateful-set
+spec:
+  serviceName: minimal-headless
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-label
+  template:
+    metadata:
+      labels:
+        app: app-label
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1-alpine
+          volumeMounts:
+            - name: html
+              mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+    - metadata:
+        name: html
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 128Mi

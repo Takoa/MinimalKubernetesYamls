@@ -1,0 +1,19 @@
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.15/#replicaset-v1-apps
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: minimal-replica-set
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-label
+  template:
+    metadata:
+      labels:
+        app: app-label
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1-alpine
